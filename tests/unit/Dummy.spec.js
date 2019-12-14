@@ -51,3 +51,29 @@ describe(' when "+" button is clicked in Footer component "open" property in Foo
         //console.log(wrapper.vm.open)
     })
 });
+
+describe(' when an item in the list is marked as done item is updated correctly', () => {
+	
+	const testData = [{
+            id: 1,
+            title: 'Test task',
+            done: false
+        }]
+    const wrapper = mount(List, {
+        propsData: {
+            list: testData
+        }
+    })
+	
+	it('updates the status when the item is marked as done', async () => {
+		
+		//await wrapper.vm.$nextTick()
+        expect(wrapper.props().list[0].done).toBe(false);
+		
+        wrapper.find('span').trigger('click');
+		//await wrapper.vm.$nextTick()
+		
+        expect(wrapper.props().list[0].done).toBe(true);
+    })
+	
+});
